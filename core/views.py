@@ -27,18 +27,20 @@ def file_list(request):
     return render(request, 'core/file_list.html', {'file_list': files})
 
 
-def page_reader(request, id, page_number):
+def page_reader(request, id, page_number=1):
 
     file = get_object_or_404(File, pk=id)
     if request.method == 'GET':
         pdf_file = open(f'{file.file.path}', 'rb')
         pdfReader = PyPDF2.PdfReader(pdf_file)
-        page = pdfReader.pages[page_number + 1]
+        page = pdfReader.pages[page_number]
         page_content = page.extract_text()
 
     return render(request, 'core/page_render.html', {
             'file': file,
-            'page_number': page_number + 1,
+            'current_page_number': page_number,
+            'next_page_number': page_number + 1,
+            'prev_page_number': page_number - 1,
             'page_content': page_content
         }
     )

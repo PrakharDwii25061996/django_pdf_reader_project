@@ -4,16 +4,16 @@
 {% block body-content %}
 <div class="container">
 	<div class="m-2">
-		<h2>Page Number - {{ page_number }}</h2>
+		<h2>Page Number - {{ current_page_number }}</h2>
 	</div><br />
 	<div>
 		{{ page_content }}
 		<br /><br />
 		<button class="m-2">
-			<a href="{% url 'page_reader' file.id page_number %}">Prev</a>
+			<a href="{% url 'page_reader' file.id prev_page_number %}">Prev</a>
 		</button>
 		<button class="m-2">
-			<a href="{% url 'page_reader' file.id page_number %}">Next</a>
+			<a href="{% url 'page_reader' file.id next_page_number %}">Next</a>
 		</button>
 	</div>
 </div>
