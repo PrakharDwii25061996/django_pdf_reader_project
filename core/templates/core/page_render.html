@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+
+{% block body-content %}
+<div class="container">
+	<div class="m-2">
+		<h2>Page Number - {{ page_number }}</h2>
+	</div><br />
+	<div>
+		{{ page_content }}
+		<br /><br />
+		<button class="m-2">
+			<a href="{% url 'page_reader' file.id page_number %}">Prev</a>
+		</button>
+		<button class="m-2">
+			<a href="{% url 'page_reader' file.id page_number %}">Next</a>
+		</button>
+	</div>
+</div>
+{% endblock body-content %}
